@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Task extends Model
 {
 
@@ -16,6 +17,11 @@ class Task extends Model
 
   //  protected $primaryKey = 'id';
 
+
+//we need to tell laravel to turn off two
+//fields that automatically looked for.
+
+public $timestamps = false;
 
 
 }
