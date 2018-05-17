@@ -48,11 +48,19 @@ class TaskController extends Controller
 //        $task->status = $request->status;
 //        $task->save();
 
-        //this is the one line version
+        //Task::create($request->all());
+        //the one line version
         // of above
         //your field names must match
         //the columns in your table
         //this is called mass asignment
+
+        //to validate, to the following
+
+        $this->validate($request,[
+           'name'=>'required|min:3',
+           'status'=>'required|numeric'
+        ]);
         Task::create($request->all());
 
         //to use mass assignmnent you must
@@ -105,6 +113,7 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::find($id)->delete();
+        return ReDirect('tasks');
     }
 }
