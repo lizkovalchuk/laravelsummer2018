@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-
     // if your table isn't follwing convention, you'll need to override
 
    // protected $table = 'products';
@@ -22,6 +21,10 @@ class Task extends Model
 //fields that automatically looked for.
 
 public $timestamps = false;
+
+//for mass assignment
+
+protected $fillable = ['name', 'status'];
 
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Task;
+use Illuminate\Support\Facades\Redirect;
 
 class TaskController extends Controller
 {
@@ -16,7 +17,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
-        return $tasks;
+        return view('tasks.index')->with('tasks', $tasks);
     }
 
     /**
@@ -26,7 +27,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create');
     }
 
     /**
@@ -37,7 +38,28 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //this takes all the data from the form
+        //dd($request->all());
+        //the code below is inserting
+
+        //below is the long way
+//        $task = new Task();
+//        $task->name = $request->name;
+//        $task->status = $request->status;
+//        $task->save();
+
+        //this is the one line version
+        // of above
+        //your field names must match
+        //the columns in your table
+        //this is called mass asignment
+        Task::create($request->all());
+
+        //to use mass assignmnent you must
+        //add permission in your model
+
+        //to go back to the index
+        return ReDirect('tasks');
     }
 
     /**
@@ -48,7 +70,8 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        $task = Task::find($id);
+        return view('tasks.show')->with('task', $task);
     }
 
     /**
@@ -59,7 +82,7 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
